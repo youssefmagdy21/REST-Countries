@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 function Root() {
   return (
     <>
-      <h1>Root Layout Fixed View</h1>
+      <Header />
       <Outlet />
     </>
   );

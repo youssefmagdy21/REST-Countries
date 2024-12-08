@@ -1,49 +1,51 @@
 import { useState } from "react";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 function DropdownFilter() {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [choosenRegion, setChoosenRegion] = useState<string | undefined>();
+  const [isOpen, setIsOpen] = useState(false);
+  const [choice, setChoice] = useState<string | undefined>();
 
   const regions = ["africa", "america", "asia", "europe", "oceania"];
 
-  const handleSwitchMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
-  const handleChooseRegion = (e: React.MouseEvent<HTMLLIElement>) => {
-    setChoosenRegion(e.currentTarget.innerText);
-    handleSwitchMenu();
-  };
+  function handleToggleMenu() {
+    setIsOpen(!isOpen);
+  }
+  function handleChooseRegion(ele: string) {
+    setChoice(ele);
+    setIsOpen(!isOpen);
+  }
 
   return (
-    //  dropdown
-    <div className="relative w-[55%] text-light-text md:w-[220px]">
-      {/* selector */}
+    <div className="relative h-12 text-sm/4 font-bold text-light-text md:h-14">
+      {/* switch */}
       <div
-        className="flex cursor-pointer items-center justify-between rounded-md bg-light-accent px-8 py-6 shadow sm:py-4"
-        onClick={handleSwitchMenu}
+        className="flex h-full w-[200px] cursor-pointer items-center justify-between rounded-md bg-white px-5 py-[18px] shadow-sm transition-colors duration-300 ease-in-out hover:bg-light-text hover:text-white md:py-[1.125rem]"
+        onClick={handleToggleMenu}
       >
-        <span>{choosenRegion ?? "Filter by Region"}</span>
-        <RiArrowDropDownLine
-          className={`text-3xl transition-transform duration-300 ease-in-out ${isOpenMenu ? "rotate-180" : "rotate-0"}`}
+        <span className="capitalize">
+          {!isOpen && choice ? choice : "Filter by Region"}
+        </span>
+        <MdKeyboardArrowDown
+          className={`${isOpen ? "rotate-180" : "rotate-0"} transition-transform duration-300 ease-in-out`}
         />
       </div>
       {/* menu */}
-      <ul
-        className={`absolute top-[5.5rem] space-y-1 rounded-md bg-light-accent px-6 py-6 shadow sm:top-[4.5rem] sm:py-4 ${isOpenMenu ? "block" : "hidden"} z-10 w-full`}
+      <div
+        className={`absolute left-0 top-14 z-10 w-[200px] rounded-md bg-white px-5 py-[18px] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+        aria-hidden={!isOpen}
       >
-        {regions.map((region) => (
-          <li
-            key={region}
-            className="cursor-pointer rounded-md px-2 capitalize transition-all duration-200 ease-in-out hover:bg-dark-accent/40"
-            onClick={(e) => {
-              handleChooseRegion(e);
-            }}
-          >
-            {region}
-          </li>
-        ))}
-      </ul>
+        <ul className="space-y-[10px]">
+          {regions.map((ele) => (
+            <li
+              key={ele}
+              className="cursor-pointer capitalize transition-colors duration-300 ease-in-out hover:bg-light-text/30"
+              onClick={() => handleChooseRegion(ele)}
+            >
+              {ele}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

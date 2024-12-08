@@ -1,33 +1,17 @@
-import { IoMdSearch } from "react-icons/io";
+import { IoSearchSharp } from "react-icons/io5";
 
 function SearchBar() {
   return (
-    <div>
-      <div className="flex items-center rounded-md bg-light-accent px-9 text-light-text shadow md:w-[440px]">
-        <IoMdSearch className="text-3xl text-light-text opacity-40" />
-        <input
-          type="search"
-          placeholder="Search for a country..."
-          className="w-full px-6 py-6 font-bold placeholder:text-light-text placeholder:opacity-40 sm:py-4"
-        />
-      </div>
-    </div>
+    <label className="flex items-center rounded-md bg-white px-7 font-bold">
+      <IoSearchSharp className="text-black/40" />
+      <input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Search for a country..."
+        className="w-full px-6 py-4 text-base/4 text-light-text placeholder:text-sm placeholder:text-black/40 md:py-[1.125rem]"
+      />
+    </label>
   );
 }
 export default SearchBar;
-
-{
-  /* <label
-        htmlFor="searchBar"
-        className="flex items-center rounded-md bg-light-accent px-9 text-light-text shadow"
-      >
-        <IoMdSearch className="text-3xl text-light-text opacity-40" />
-        <input
-          id="searchBar"
-          name="searchBar"
-          type="search"
-          placeholder="Search for a country..."
-          className="w-full px-6 py-6 font-bold placeholder:text-light-text placeholder:opacity-40 sm:py-4"
-        />
-      </label> */
-}

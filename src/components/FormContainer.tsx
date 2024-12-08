@@ -4,9 +4,9 @@ import SearchBar from "./SearchBar";
 function FormContainer() {
   return (
     <section>
-      <div className="flex flex-col gap-14 px-4 pt-11 sm:px-16 sm:pt-12 md:flex-row md:justify-between md:gap-5">
+      <div className="flex flex-col gap-10 px-4 py-6 md:px-[4.75rem] md:py-12">
         <SearchBar />
-        <DropdownFilter />
+        {/* <DropdownFilter /> */}
       </div>
     </section>
   );

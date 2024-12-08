@@ -5,7 +5,7 @@ function Index() {
   return (
     <main className="bg-dark-accent">
       <FormContainer />
-      <CountryCardsGrid />
+      {/* <CountryCardsGrid /> */}
     </main>
   );
 }

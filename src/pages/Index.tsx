@@ -3,9 +3,9 @@ import FormContainer from "../components/FormContainer";
 
 function Index() {
   return (
-    <main className="bg-dark-accent">
+    <main className="bg-light-primary">
       <FormContainer />
-      {/* <CountryCardsGrid /> */}
+      <CountryCardsGrid />
     </main>
   );
 }

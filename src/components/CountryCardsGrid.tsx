@@ -2,22 +2,16 @@ import CountryCard from "./CountryCard";
 
 function CountryCardsGrid() {
   return (
-    <section className="flex h-dvh justify-center">
+    <section className="grid grid-cols-[repeat(auto-fit,_minmax(264px,_1fr))] gap-10 px-4 md:gap-[70px] md:px-[4.75rem] lg:gap-[74px]">
+      <CountryCard />
+      <CountryCard />
+      <CountryCard />
+      <CountryCard />
+      <CountryCard />
+      <CountryCard />
+      <CountryCard />
       <CountryCard />
     </section>
   );
 }
 export default CountryCardsGrid;
-
-{
-  /* <div className="grid grid-cols-4 gap-8 px-4 py-11 sm:px-16 sm:py-12">
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-<div className="h-52 min-w-64 bg-white"></div>
-</div> */
-}

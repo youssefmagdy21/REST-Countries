@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function CountryCard() {
   return (
-    <Link to={"/"} className="mx-auto block h-fit w-fit">
+    <Link to={"countries/germany"} className="mx-auto block h-fit w-fit">
       <div className="h-[336px] w-full overflow-hidden rounded-md bg-white shadow-sm transition-transform duration-300 hover:scale-105">
         <img
           src="https://flagcdn.com/de.svg"

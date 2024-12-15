@@ -9,6 +9,8 @@ import Root from "./layouts/Root.tsx";
 import Index from "./pages/Index.tsx";
 import Country from "./pages/Country.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 
 const routes: RouteObject[] = [
@@ -31,8 +33,13 @@ const routes: RouteObject[] = [
 
 const router = createBrowserRouter(routes);
 
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools buttonPosition="bottom-right" />
+    </QueryClientProvider>
   </StrictMode>,
 );

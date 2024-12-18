@@ -31,7 +31,7 @@ function CountryCardsGrid() {
             name={ele.name.common}
             population={ele.population}
             region={ele.region}
-            capital={ele.capital[0]}
+            capital={ele.capital}
           />
         );
       })}

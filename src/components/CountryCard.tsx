@@ -6,7 +6,7 @@ type TCountryCardProps = {
   name: string;
   population: number;
   region: string;
-  capital: string;
+  capital: string[];
 };
 
 function CountryCard({
@@ -39,7 +39,7 @@ function CountryCard({
             </p>
             <p>
               <strong className="font-bold">Capital:</strong>{" "}
-              <span>{capital}</span>
+              <span>{capital.join(", ")}</span>
             </p>
           </div>
         </div>

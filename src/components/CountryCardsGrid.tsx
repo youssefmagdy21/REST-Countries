@@ -1,6 +1,7 @@
 import CountryCard from "./CountryCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCountries } from "../api/countries-api";
+import LoadingSpinner from "./LoadingSpinner";
 
 function CountryCardsGrid() {
   const { isPending, isError, data, error } = useQuery({
@@ -9,7 +10,11 @@ function CountryCardsGrid() {
   });
 
   if (isPending) {
-    return <span>Loading...</span>;
+    return (
+      <section className="flex h-[calc(100vh-(80px+160px))] w-full items-center justify-center md:h-[calc(100vh-(80px+104px))]">
+        <LoadingSpinner />
+      </section>
+    );
   }
   if (isError) {
     return <span>Error: {error.message}</span>;

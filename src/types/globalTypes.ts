@@ -7,12 +7,7 @@ export type TCountry = {
   name: {
     common: string;
     official: string;
-    nativeName: {
-      [key: string]: {
-        official: string;
-        common: string;
-      };
-    };
+    nativeName: TNativeName;
   };
   capital: string[];
   region: string;
@@ -23,15 +18,27 @@ export type TDetailedCountry = TCountry & {
   subregion: string;
   borders: string[];
   tld: string[];
-  languages: {
-    [key: string]: string;
-  };
-  currencies: {
-    [key: string]: {
-      name: string;
-      symbol: string;
-    };
+  languages: TLanguages;
+  currencies: TCurrencies;
+};
+export type TNativeName = {
+  [key: string]: {
+    official: string;
+    common: string;
   };
 };
+
+export type TCurrencies = {
+  [key: string]: {
+    name: string;
+    symbol: string;
+  };
+};
+
+export type TLanguages = {
+  [key: string]: string;
+};
+
+export type TCountries = TCountry[];
 
 export type TRegion = "africa" | "america" | "asia" | "europe" | "oceania";

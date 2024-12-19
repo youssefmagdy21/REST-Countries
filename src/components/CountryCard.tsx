@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatPopulation } from "../util";
 
 type TCountryCardProps = {
   flagImage: string;
@@ -31,7 +32,7 @@ function CountryCard({
           <div className="space-y-2">
             <p>
               <strong className="font-bold">Population:</strong>{" "}
-              <span>{new Intl.NumberFormat().format(population)}</span>
+              <span>{formatPopulation(population)}</span>
             </p>
             <p>
               <strong className="font-bold">Region:</strong>{" "}

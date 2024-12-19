@@ -4,6 +4,12 @@ import BorderCountryLink from "../components/BorderCountryLink";
 import { useQuery } from "@tanstack/react-query";
 import { getCountryByName } from "../api/countries-api";
 import LoadingSpinner from "../components/LoadingSpinner";
+import {
+  formatPopulation,
+  getCurrencies,
+  getLanguages,
+  getNativeName,
+} from "../util";
 
 function Country() {
   const { countryName } = useParams() as { countryName: string };
@@ -33,15 +39,15 @@ function Country() {
         {/* image */}
         <div className="max-w-[560px]">
           <img
-            src={data[0].flags.png}
-            alt={data[0].flags.alt}
+            src={data.flags.svg}
+            alt={data.flags.alt}
             className="h-[228px] w-full object-cover md:h-[400px]"
           />
         </div>
         {/* content */}
         <div className="w-full max-w-[980px] text-sm md:text-base xl:w-auto xl:flex-1">
           <h2 className="mb-7 text-xl/5 font-extraBold capitalize md:mb-8 md:text-3xl">
-            {data[0].name.common}
+            {data.name.common}
           </h2>
           {/* country info */}
           <div className="2xl mb-11 flex flex-col gap-12 md:mb-[4.25rem] md:flex-row md:justify-between md:gap-0">
@@ -49,48 +55,37 @@ function Country() {
             <div className="space-y-3">
               <p>
                 <b className="font-bold">Native Name:</b>{" "}
-                <span>
-                  {Object.values(data[0].name.nativeName).reverse()[0].common}
-                </span>
+                <span>{getNativeName(data.name.nativeName)}</span>
               </p>
               <p>
                 <b className="font-bold">Population:</b>{" "}
-                <span>
-                  {new Intl.NumberFormat().format(data[0].population)}
-                </span>
+                <span>{formatPopulation(data.population)}</span>
               </p>
               <p>
-                <b className="font-bold">Region:</b>{" "}
-                <span>{data[0].region}</span>
+                <b className="font-bold">Region:</b> <span>{data.region}</span>
               </p>
               <p>
                 <b className="font-bold">Sub Region:</b>{" "}
-                <span>{data[0].subregion}</span>
+                <span>{data.subregion}</span>
               </p>
               <p>
                 <b className="font-bold">Capital:</b>{" "}
-                <span>{data[0].capital.join(", ")}</span>
+                <span>{data.capital.join(", ")}</span>
               </p>
             </div>
             {/* info pt.2 */}
             <div className="space-y-3">
               <p>
                 <b className="font-bold">Top Level Domain:</b>{" "}
-                <span>{data[0].tld.join(", ")}</span>
+                <span>{data.tld.join(", ")}</span>
               </p>
               <p>
                 <b className="font-bold">Currencies:</b>{" "}
-                <span>
-                  {Object.values(data[0].currencies)
-                    .map((ele) => ele.name)
-                    .join(", ")}
-                </span>
+                <span>{getCurrencies(data.currencies)}</span>
               </p>
               <p>
                 <b className="font-bold">Languages:</b>{" "}
-                <span>
-                  {Object.values(data[0].languages).reverse().join(", ")}
-                </span>
+                <span>{getLanguages(data.languages)}</span>
               </p>
             </div>
           </div>

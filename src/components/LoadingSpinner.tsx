@@ -1,6 +1,4 @@
-import spinnerImage from "../assets/tube-spinner.svg";
-
 function LoadingSpinner() {
-  return <img src={spinnerImage} alt="" width={150} />;
+  return <img src="/loading-spinner.svg" alt="loading spinner" width={150} />;
 }
 export default LoadingSpinner;

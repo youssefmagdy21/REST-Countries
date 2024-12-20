@@ -1,4 +1,4 @@
-import { TCountries, TRegion, TDetailedCountry } from "../types/globalTypes";
+import { TCountries, TDetailedCountry } from "../types/globalTypes";
 
 const API_URL = "https://restcountries.com/v3.1";
 const FIELDS = "name,flags,population,region,capital";
@@ -15,18 +15,18 @@ export async function getAllCountries(): Promise<TCountries> {
   return data;
 }
 
-export async function getCountriesByRegion(
-  region: TRegion,
-): Promise<TCountries> {
-  const res = await fetch(`${API_URL}/region/${region}?fields=${FIELDS}`);
-  if (!res.ok) {
-    throw new Error("Somthing went wrong");
-  }
+// export async function getCountriesByRegion(
+//   region: TRegion,
+// ): Promise<TCountries> {
+//   const res = await fetch(`${API_URL}/region/${region}?fields=${FIELDS}`);
+//   if (!res.ok) {
+//     throw new Error("Somthing went wrong");
+//   }
 
-  const data: TCountries = await res.json();
+//   const data: TCountries = await res.json();
 
-  return data;
-}
+//   return data;
+// }
 
 export async function getCountryByName(
   name: string,

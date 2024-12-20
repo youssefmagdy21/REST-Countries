@@ -2,12 +2,26 @@ import CountryCard from "./CountryCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCountries } from "../api/countries-api";
 import LoadingSpinner from "./LoadingSpinner";
+import { useSearchParams } from "react-router-dom";
+import { TCountries, TRegion } from "../types/globalTypes";
+import { useCallback } from "react";
 
 function CountryCardsGrid() {
+  const [searchParams] = useSearchParams();
+  const region = searchParams.get("region") as TRegion | null;
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["countries"],
     queryFn: getAllCountries,
+    select: useCallback(
+      (data: TCountries) => {
+        if (!region) return data;
+        return data.filter((ele) => ele.region.toLowerCase() === region);
+      },
+      [region],
+    ),
   });
+
+  console.log(searchParams.get("region"));
 
   if (isPending) {
     return (

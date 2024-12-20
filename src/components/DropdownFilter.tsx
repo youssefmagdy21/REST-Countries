@@ -1,17 +1,27 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { TRegion } from "../types/globalTypes";
+import { useSearchParams } from "react-router-dom";
 
 function DropdownFilter() {
   const [isOpen, setIsOpen] = useState(false);
-  const [choice, setChoice] = useState<string | undefined>();
-
-  const regions = ["africa", "america", "asia", "europe", "oceania"];
+  const [choice, setChoice] = useState<TRegion | undefined>();
+  const [, setSearchParams] = useSearchParams();
+  const regions: TRegion[] = [
+    "africa",
+    "americas",
+    "antarctic",
+    "asia",
+    "europe",
+    "oceania",
+  ];
 
   function handleToggleMenu() {
     setIsOpen(!isOpen);
   }
-  function handleChooseRegion(ele: string) {
+  function handleChooseRegion(ele: TRegion) {
     setChoice(ele);
+    setSearchParams({ region: ele });
     setIsOpen(!isOpen);
   }
 

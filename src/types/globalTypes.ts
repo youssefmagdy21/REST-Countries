@@ -41,4 +41,10 @@ export type TLanguages = {
 
 export type TCountries = TCountry[];
 
-export type TRegion = "africa" | "america" | "asia" | "europe" | "oceania";
+export type TRegion =
+  | "africa"
+  | "americas"
+  | "asia"
+  | "europe"
+  | "oceania"
+  | "antarctic";

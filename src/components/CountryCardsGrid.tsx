@@ -3,25 +3,39 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllCountries } from "../api/countries-api";
 import LoadingSpinner from "./LoadingSpinner";
 import { useSearchParams } from "react-router-dom";
-import { TCountries, TRegion } from "../types/globalTypes";
+import { TCountries } from "../types/globalTypes";
 import { useCallback } from "react";
 
 function CountryCardsGrid() {
   const [searchParams] = useSearchParams();
-  const region = searchParams.get("region") as TRegion | null;
+  const regionFilter = searchParams.get("region");
+  const nameFilter = searchParams.get("name");
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["countries"],
     queryFn: getAllCountries,
     select: useCallback(
       (data: TCountries) => {
-        if (!region) return data;
-        return data.filter((ele) => ele.region.toLowerCase() === region);
+        if (!regionFilter && !nameFilter) {
+          return data;
+        }
+
+        let filteredData = data;
+        if (regionFilter) {
+          filteredData = data.filter(
+            (ele) => ele.region.toLowerCase() === regionFilter,
+          );
+        }
+        if (nameFilter) {
+          return filteredData.filter((ele) =>
+            ele.name.common.toLowerCase().includes(nameFilter),
+          );
+        }
+
+        return filteredData;
       },
-      [region],
+      [regionFilter, nameFilter],
     ),
   });
-
-  console.log(searchParams.get("region"));
 
   if (isPending) {
     return (
@@ -30,6 +44,7 @@ function CountryCardsGrid() {
       </section>
     );
   }
+
   if (isError) {
     return <span>Error: {error.message}</span>;
   }

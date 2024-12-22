@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { GrPowerReset } from "react-icons/gr";
 import { TRegion } from "../types/globalTypes";
 import { useSearchParams } from "react-router-dom";
 
 function DropdownFilter() {
   const [isOpen, setIsOpen] = useState(false);
-  const [choice, setChoice] = useState<TRegion | undefined>();
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const regions: TRegion[] = [
     "africa",
     "americas",
@@ -20,11 +20,18 @@ function DropdownFilter() {
     setIsOpen(!isOpen);
   }
   function handleChooseRegion(ele: TRegion) {
-    setChoice(ele);
-    setSearchParams({ region: ele });
+    setSearchParams((prev) => {
+      prev.set("region", ele);
+      return prev;
+    });
     setIsOpen(!isOpen);
   }
-
+  function handleResetChoice() {
+    setSearchParams((prev) => {
+      prev.delete("region");
+      return prev;
+    });
+  }
   return (
     <div className="relative h-12 text-sm/4 font-bold text-light-text md:h-14">
       {/* switch */}
@@ -33,7 +40,7 @@ function DropdownFilter() {
         onClick={handleToggleMenu}
       >
         <span className="capitalize">
-          {!isOpen && choice ? choice : "Filter by Region"}
+          {searchParams.get("region") ?? "Filter by Region"}
         </span>
         <MdKeyboardArrowDown
           className={`${isOpen ? "rotate-180" : "rotate-0"} transition-transform duration-300 ease-in-out`}
@@ -56,6 +63,14 @@ function DropdownFilter() {
           ))}
         </ul>
       </div>
+      {searchParams.get("region") && (
+        <button
+          className="absolute -right-5 top-1/2 -translate-y-1/2"
+          onClick={handleResetChoice}
+        >
+          <GrPowerReset className="transition-transform duration-300 ease-in-out hover:rotate-180" />
+        </button>
+      )}
     </div>
   );
 }

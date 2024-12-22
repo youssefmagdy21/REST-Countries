@@ -33,7 +33,7 @@ function DropdownFilter() {
     });
   }
   return (
-    <div className="relative h-12 text-sm/4 font-bold text-light-text md:h-14">
+    <div className="relative h-12 w-max text-sm/4 font-bold text-light-text md:h-14">
       {/* switch */}
       <div
         className="flex h-full w-[200px] cursor-pointer items-center justify-between rounded-md bg-white px-5 py-[18px] shadow-sm transition-colors duration-300 ease-in-out hover:bg-light-text hover:text-white md:py-[1.125rem]"
@@ -65,7 +65,7 @@ function DropdownFilter() {
       </div>
       {searchParams.get("region") && (
         <button
-          className="absolute -right-5 top-1/2 -translate-y-1/2"
+          className="absolute -right-6 top-1/2 -translate-y-1/2"
           onClick={handleResetChoice}
         >
           <GrPowerReset className="transition-transform duration-300 ease-in-out hover:rotate-180" />

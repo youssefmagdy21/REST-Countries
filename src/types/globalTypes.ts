@@ -12,6 +12,7 @@ export type TCountry = {
   capital: string[];
   region: string;
   population: number;
+  cca3: string;
 };
 
 export type TDetailedCountry = TCountry & {

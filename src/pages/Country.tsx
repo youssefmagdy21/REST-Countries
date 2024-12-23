@@ -9,6 +9,8 @@ import {
   getCurrencies,
   getLanguages,
   getNativeName,
+  isArrayEmpty,
+  isObjectEmpty,
 } from "../util";
 
 function Country() {
@@ -38,6 +40,11 @@ function Country() {
       <section className="flex flex-col items-start gap-12 py-[3.75rem] md:py-20 xl:flex-row xl:items-center xl:gap-[108px]">
         {/* image */}
         <div className="max-w-[560px]">
+          {/* TO DO
+           *
+           * OPTIMIZE THE IMAGE STYLE / LOADING
+           *
+           */}
           <img
             src={data.flags.svg}
             alt={data.flags.alt}
@@ -47,7 +54,7 @@ function Country() {
         {/* content */}
         <div className="w-full max-w-[980px] text-sm md:text-base xl:w-auto xl:flex-1">
           <h2 className="mb-7 text-xl/5 font-extraBold capitalize md:mb-8 md:text-3xl">
-            {data.name.common}
+            {data.name.common || data.name.official}
           </h2>
           {/* country info */}
           <div className="2xl mb-11 flex flex-col gap-12 md:mb-[4.25rem] md:flex-row md:justify-between md:gap-0">
@@ -55,7 +62,11 @@ function Country() {
             <div className="space-y-3">
               <p>
                 <b className="font-bold">Native Name:</b>{" "}
-                <span>{getNativeName(data.name.nativeName)}</span>
+                <span>
+                  {!isObjectEmpty(data.name.nativeName)
+                    ? getNativeName(data.name.nativeName)
+                    : "--"}
+                </span>
               </p>
               <p>
                 <b className="font-bold">Population:</b>{" "}
@@ -66,26 +77,38 @@ function Country() {
               </p>
               <p>
                 <b className="font-bold">Sub Region:</b>{" "}
-                <span>{data.subregion}</span>
+                <span>{data.subregion ? data.subregion : "--"}</span>
               </p>
               <p>
                 <b className="font-bold">Capital:</b>{" "}
-                <span>{data.capital.join(", ")}</span>
+                <span>
+                  {!isArrayEmpty(data.capital) ? data.capital.join(", ") : "--"}
+                </span>
               </p>
             </div>
             {/* info pt.2 */}
             <div className="space-y-3">
               <p>
                 <b className="font-bold">Top Level Domain:</b>{" "}
-                <span>{data.tld.join(", ")}</span>
+                <span>
+                  {!isArrayEmpty(data.tld) ? data.tld.join(", ") : "--"}
+                </span>
               </p>
               <p>
                 <b className="font-bold">Currencies:</b>{" "}
-                <span>{getCurrencies(data.currencies)}</span>
+                <span>
+                  {!isObjectEmpty(data.currencies)
+                    ? getCurrencies(data.currencies)
+                    : "--"}
+                </span>
               </p>
               <p>
                 <b className="font-bold">Languages:</b>{" "}
-                <span>{getLanguages(data.languages)}</span>
+                <span>
+                  {!isObjectEmpty(data.languages)
+                    ? getLanguages(data.languages)
+                    : "--"}
+                </span>
               </p>
             </div>
           </div>
@@ -96,9 +119,11 @@ function Country() {
               <b className="font-bold">Border Countries:</b>{" "}
             </p>
             <ul className="flex flex-wrap gap-2">
-              <BorderCountryLink />
-              <BorderCountryLink />
-              <BorderCountryLink />
+              {data.borders.length > 0
+                ? data.borders.map((ele) => (
+                    <BorderCountryLink key={ele} countryCode={ele} />
+                  ))
+                : "--"}
             </ul>
           </div>
         </div>

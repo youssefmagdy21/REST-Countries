@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { generateBordersMap } from "../api/countries-api";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback } from "react";
+import { generateBordersMap } from "../api/countries-api";
 
-function BorderCountryLink({ countryCode }: { countryCode: string }) {
+export default function BorderCountryLink({
+  countryCode,
+}: {
+  countryCode: string;
+}) {
   const { data } = useQuery({
     queryKey: ["borders"],
     queryFn: generateBordersMap,
@@ -15,14 +19,12 @@ function BorderCountryLink({ countryCode }: { countryCode: string }) {
     ),
   });
   return (
-    <li className="w-24 rounded-sm bg-light-accent text-center shadow transition-transform duration-300 ease-in-out hover:-translate-y-1">
-      <Link
-        to={`/countries/${data}`}
-        className="block py-1.5 text-xs/4 md:text-sm/4"
-      >
-        {data}
-      </Link>
-    </li>
+    <Link
+      to={`/countries/${data?.toLowerCase()}`}
+      className="block h-[30px] min-w-24 rounded-sm bg-light-accent px-2 py-1.5 text-center text-xs/4 transition-transform duration-300 hover:-translate-y-1 md:text-sm/4"
+      style={{ boxShadow: "0 0 4px 1px rgba(0,0,0,0.1)" }}
+    >
+      {data}
+    </Link>
   );
 }
-export default BorderCountryLink;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { formatPopulation } from "../util";
+import { formatPopulation, isArrayEmpty } from "../util";
 
 type TCountryCardProps = {
   flagImage: string;
@@ -10,7 +10,7 @@ type TCountryCardProps = {
   capital: string[];
 };
 
-function CountryCard({
+export default function CountryCard({
   flagImage,
   flagAlt,
   name,
@@ -21,11 +21,18 @@ function CountryCard({
   return (
     <Link
       to={`countries/${name.toLowerCase()}`}
-      className="mx-auto block w-full shadow-sm transition-transform duration-300 hover:scale-105"
+      className="block shadow-sm transition-transform duration-300 hover:scale-105"
     >
-      <div className="h-[336px] overflow-hidden rounded-md bg-white">
-        <div className="h-[160px] w-full shadow-sm">
-          <img src={flagImage} alt={flagAlt} className="h-full w-full" />
+      <div className="h-[21rem] overflow-hidden rounded-md bg-white">
+        <div className="h-[10rem] shadow-sm">
+          <img
+            src={flagImage}
+            alt={flagAlt}
+            className="h-full w-full"
+            height={160}
+            width={320}
+            loading="lazy"
+          />
         </div>
         <div className="px-6 py-8 text-sm/4">
           <h2 className="mb-4 text-base/4 font-extraBold">{name}</h2>
@@ -40,7 +47,7 @@ function CountryCard({
             </p>
             <p>
               <strong className="font-bold">Capital:</strong>{" "}
-              <span>{capital.join(", ")}</span>
+              <span>{!isArrayEmpty(capital) ? capital.join(", ") : "--"}</span>
             </p>
           </div>
         </div>
@@ -48,4 +55,3 @@ function CountryCard({
     </Link>
   );
 }
-export default CountryCard;

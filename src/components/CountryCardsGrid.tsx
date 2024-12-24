@@ -38,11 +38,7 @@ function CountryCardsGrid() {
   });
 
   if (isPending) {
-    return (
-      <section className="flex h-[calc(100vh-(80px+160px))] w-full items-center justify-center md:h-[calc(100vh-(80px+104px))]">
-        <LoadingSpinner />
-      </section>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
@@ -50,14 +46,14 @@ function CountryCardsGrid() {
   }
 
   return (
-    <section className="grid grid-cols-[repeat(auto-fit,_264px)] justify-center gap-10 py-8 md:justify-between md:gap-x-5 md:gap-y-[74px] md:py-12 lg:gap-x-7">
+    <section className="mt-8 grid grid-cols-[repeat(auto-fit,_16.5rem)] justify-center gap-10 md:mt-12 md:justify-between md:gap-x-5 md:gap-y-[4.625rem] lg:gap-x-7">
       {data.map((ele) => {
         return (
           <CountryCard
             key={ele.name.common}
             flagImage={ele.flags.png}
             flagAlt={ele.flags.alt}
-            name={ele.name.common}
+            name={ele.name.common || ele.name.official}
             population={ele.population}
             region={ele.region}
             capital={ele.capital}

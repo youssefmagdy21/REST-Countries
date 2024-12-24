@@ -13,7 +13,7 @@ import {
   isObjectEmpty,
 } from "../util";
 
-function Country() {
+export default function Country() {
   const { countryName } = useParams() as { countryName: string };
 
   const { isError, isPending, error, data } = useQuery({
@@ -22,37 +22,28 @@ function Country() {
   });
 
   if (isPending) {
-    return (
-      <section className="flex h-[calc(100vh-(80px+160px))] w-full items-center justify-center md:h-[calc(100vh-(80px+104px))]">
-        <LoadingSpinner />
-      </section>
-    );
+    return <LoadingSpinner />;
   }
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
   return (
-    <main className="min-h-[calc(100vh-80px)] bg-light-primary px-7 md:px-[4.75rem]">
-      <div className="pt-10 md:pt-[4.75rem]">
+    <>
+      <div className="mt-10 md:mt-[4.75rem]">
         <BackButton />
       </div>
-      {/* grid container --> py 60px / 78px */}
-      <section className="flex flex-col items-start gap-12 py-[3.75rem] md:py-20 xl:flex-row xl:items-center xl:gap-[108px]">
+      <section className="mt-[3.75rem] flex flex-col items-start gap-12 md:mt-20 xl:flex-row xl:items-center xl:gap-[6.75rem]">
         {/* image */}
-        <div className="max-w-[560px]">
-          {/* TO DO
-           *
-           * OPTIMIZE THE IMAGE STYLE / LOADING
-           *
-           */}
+        <div className="h-[14.25rem] w-full max-w-[35rem] border border-black border-opacity-5 bg-white sm:h-[25rem]">
           <img
             src={data.flags.svg}
             alt={data.flags.alt}
-            className="h-[228px] w-full object-cover md:h-[400px]"
+            className="h-full w-full"
+            loading="lazy"
           />
         </div>
         {/* content */}
-        <div className="w-full max-w-[980px] text-sm md:text-base xl:w-auto xl:flex-1">
+        <div className="w-full max-w-[61.25rem] text-sm md:text-base xl:flex-1">
           <h2 className="mb-7 text-xl/5 font-extraBold capitalize md:mb-8 md:text-3xl">
             {data.name.common || data.name.official}
           </h2>
@@ -61,7 +52,7 @@ function Country() {
             {/* info pt.1 */}
             <div className="space-y-3">
               <p>
-                <b className="font-bold">Native Name:</b>{" "}
+                <b className="font-bold">Native Name: </b>
                 <span>
                   {!isObjectEmpty(data.name.nativeName)
                     ? getNativeName(data.name.nativeName)
@@ -69,18 +60,18 @@ function Country() {
                 </span>
               </p>
               <p>
-                <b className="font-bold">Population:</b>{" "}
+                <b className="font-bold">Population: </b>
                 <span>{formatPopulation(data.population)}</span>
               </p>
               <p>
-                <b className="font-bold">Region:</b> <span>{data.region}</span>
+                <b className="font-bold">Region: </b> <span>{data.region}</span>
               </p>
               <p>
-                <b className="font-bold">Sub Region:</b>{" "}
+                <b className="font-bold">Sub Region: </b>
                 <span>{data.subregion ? data.subregion : "--"}</span>
               </p>
               <p>
-                <b className="font-bold">Capital:</b>{" "}
+                <b className="font-bold">Capital: </b>
                 <span>
                   {!isArrayEmpty(data.capital) ? data.capital.join(", ") : "--"}
                 </span>
@@ -89,13 +80,13 @@ function Country() {
             {/* info pt.2 */}
             <div className="space-y-3">
               <p>
-                <b className="font-bold">Top Level Domain:</b>{" "}
+                <b className="font-bold">Top Level Domain: </b>
                 <span>
                   {!isArrayEmpty(data.tld) ? data.tld.join(", ") : "--"}
                 </span>
               </p>
               <p>
-                <b className="font-bold">Currencies:</b>{" "}
+                <b className="font-bold">Currencies: </b>
                 <span>
                   {!isObjectEmpty(data.currencies)
                     ? getCurrencies(data.currencies)
@@ -103,7 +94,7 @@ function Country() {
                 </span>
               </p>
               <p>
-                <b className="font-bold">Languages:</b>{" "}
+                <b className="font-bold">Languages: </b>
                 <span>
                   {!isObjectEmpty(data.languages)
                     ? getLanguages(data.languages)
@@ -114,21 +105,20 @@ function Country() {
           </div>
           {/* borders */}
           {/* TO DO FETCH FROM CODE */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
             <p>
-              <b className="font-bold">Border Countries:</b>{" "}
+              <b className="font-bold">Border Countries:</b>
             </p>
-            <ul className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {data.borders.length > 0
                 ? data.borders.map((ele) => (
                     <BorderCountryLink key={ele} countryCode={ele} />
                   ))
                 : "--"}
-            </ul>
+            </div>
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }
-export default Country;

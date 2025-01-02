@@ -33,10 +33,10 @@ function DropdownFilter() {
     });
   }
   return (
-    <div className="relative h-12 w-max text-sm/4 font-bold text-light-text md:h-14">
+    <div className="relative h-12 w-max text-sm/4 font-bold md:h-14">
       {/* switch */}
       <div
-        className="flex h-full w-[200px] cursor-pointer items-center justify-between rounded-md bg-white px-5 py-[18px] shadow-sm transition-colors duration-300 ease-in-out hover:bg-light-text hover:text-white md:py-[1.125rem]"
+        className="hover:bg-text bg-accent hover:text-accent flex h-full w-[12.5rem] cursor-pointer items-center justify-between rounded-md px-5 py-[1.125rem] shadow-sm transition-colors duration-300 ease-in-out md:py-[1.125rem]"
         onClick={handleToggleMenu}
       >
         <span className="capitalize">
@@ -48,14 +48,14 @@ function DropdownFilter() {
       </div>
       {/* menu */}
       <div
-        className={`absolute left-0 top-14 z-10 w-[200px] rounded-md bg-white px-5 py-[18px] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+        className={`bg-accent absolute left-0 top-14 z-10 w-[200px] rounded-md px-5 py-[18px] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
         aria-hidden={!isOpen}
       >
         <ul className="space-y-[10px]">
           {regions.map((ele) => (
             <li
               key={ele}
-              className="cursor-pointer capitalize transition-colors duration-300 ease-in-out hover:bg-light-text/30"
+              className="hover:bg-text/30 cursor-pointer capitalize transition-colors duration-300 ease-in-out"
               onClick={() => handleChooseRegion(ele)}
             >
               {ele}
@@ -68,7 +68,7 @@ function DropdownFilter() {
           className="absolute -right-6 top-1/2 -translate-y-1/2"
           onClick={handleResetChoice}
         >
-          <GrPowerReset className="transition-transform duration-300 ease-in-out hover:rotate-180" />
+          <GrPowerReset className="transition-transform duration-700 hover:rotate-[360deg]" />
         </button>
       )}
     </div>

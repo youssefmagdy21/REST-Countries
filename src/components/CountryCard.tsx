@@ -23,7 +23,7 @@ export default function CountryCard({
       to={`countries/${name.toLowerCase()}`}
       className="block shadow-sm transition-transform duration-300 hover:scale-105"
     >
-      <div className="h-[21rem] overflow-hidden rounded-md bg-white">
+      <div className="bg-accent h-[21rem] overflow-hidden rounded-md">
         <div className="h-[10rem] shadow-sm">
           <img
             src={flagImage}

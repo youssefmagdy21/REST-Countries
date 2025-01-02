@@ -34,7 +34,7 @@ export default function Country() {
       </div>
       <section className="mt-[3.75rem] flex flex-col items-start gap-12 md:mt-20 xl:flex-row xl:items-center xl:gap-[6.75rem]">
         {/* image */}
-        <div className="h-[14.25rem] w-full max-w-[35rem] border border-black border-opacity-5 bg-white sm:h-[25rem]">
+        <div className="bg-accent h-[14.25rem] w-full max-w-[35rem] shadow-sm sm:h-[25rem]">
           <img
             src={data.flags.svg}
             alt={data.flags.alt}

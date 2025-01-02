@@ -25,19 +25,19 @@ function SearchBar() {
     setIsSearching(true);
   }
   return (
-    <label className="relative flex h-12 w-full items-center rounded-md bg-white px-7 font-bold shadow md:h-14 md:w-[480px]">
-      <IoSearchSharp className="text-light-input" />
+    <label className="bg-accent relative flex h-12 w-full items-center rounded-md px-7 font-bold shadow md:h-14 md:w-[480px]">
+      <IoSearchSharp className="text-input" />
       <input
         type="search"
         name="search"
         id="search"
         placeholder="Search for a country..."
-        className="h-full w-full px-6 py-4 text-base/4 text-light-text placeholder:text-sm placeholder:text-light-input focus:outline-none md:py-[1.125rem]"
+        className="placeholder:text-input/90 bg-accent h-full w-full px-6 py-4 text-base/4 placeholder:text-xs placeholder:font-light focus:outline-none md:py-[1.125rem]"
         value={searchQuery}
         onChange={handleSearchChange}
       />
       {isSearching && (
-        <FaRotate className="absolute right-7 animate-spin text-light-input" />
+        <FaRotate className="text-input absolute right-7 animate-spin" />
       )}
     </label>
   );

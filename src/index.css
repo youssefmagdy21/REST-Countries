@@ -9,12 +9,18 @@
     --color-accent: 0deg 0% 100%;
     --color-input: 0deg 0% 52%;
   }
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     :root {
       --color-background: 207deg 26% 17%;
       --color-text: 0deg 0% 100%;
       --color-accent: 209deg 23% 22%;
       --color-input: 0deg 0% 100%;
     }
+  } */
+  :root:has(.dark) {
+    --color-background: 207deg 26% 17%;
+    --color-text: 0deg 0% 100%;
+    --color-accent: 209deg 23% 22%;
+    --color-input: 0deg 0% 100%;
   }
 }

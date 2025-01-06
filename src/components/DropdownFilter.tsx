@@ -36,7 +36,7 @@ function DropdownFilter() {
     <div className="relative h-12 w-max text-sm/4 font-bold md:h-14">
       {/* switch */}
       <div
-        className="hover:bg-text bg-accent hover:text-accent flex h-full w-[12.5rem] cursor-pointer items-center justify-between rounded-md px-5 py-[1.125rem] shadow-sm transition-colors duration-300 ease-in-out md:py-[1.125rem]"
+        className="flex h-full w-[12.5rem] cursor-pointer items-center justify-between rounded-md bg-accent px-5 py-[1.125rem] shadow-sm transition-colors duration-300 ease-in-out hover:bg-text hover:text-accent md:py-[1.125rem]"
         onClick={handleToggleMenu}
       >
         <span className="capitalize">
@@ -48,14 +48,14 @@ function DropdownFilter() {
       </div>
       {/* menu */}
       <div
-        className={`bg-accent absolute left-0 top-14 z-10 w-[200px] rounded-md px-5 py-[18px] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+        className={`absolute left-0 top-14 z-10 w-[200px] rounded-md bg-accent px-5 py-[18px] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
         aria-hidden={!isOpen}
       >
         <ul className="space-y-[10px]">
           {regions.map((ele) => (
             <li
               key={ele}
-              className="hover:bg-text/30 cursor-pointer capitalize transition-colors duration-300 ease-in-out"
+              className="cursor-pointer capitalize transition-colors duration-300 ease-in-out hover:bg-text/30"
               onClick={() => handleChooseRegion(ele)}
             >
               {ele}

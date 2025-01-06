@@ -17,7 +17,7 @@
       --color-input: 0deg 0% 100%;
     }
   } */
-  :root:has(.dark) {
+  .dark {
     --color-background: 207deg 26% 17%;
     --color-text: 0deg 0% 100%;
     --color-accent: 209deg 23% 22%;

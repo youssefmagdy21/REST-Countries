@@ -1,6 +1,6 @@
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../contexts/ThemeContext/ThemeContext";
 
 function Header() {
   const { theme, toggleTheme } = useTheme();

@@ -1,13 +1,6 @@
-import {
-  LoaderFunctionArgs,
-  useLoaderData,
-  useNavigation,
-} from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import BorderCountryLink from "../components/BorderCountryLink";
-import { QueryClient, useSuspenseQuery } from "@tanstack/react-query";
-
-// import LoadingSpinner from "../components/LoadingSpinner";
 import {
   formatPopulation,
   getCurrencies,
@@ -16,27 +9,14 @@ import {
   isArrayEmpty,
   isObjectEmpty,
 } from "../util/util";
-import { countryDetailsQuery } from "../queries/countryDetailsQuery";
 import LoadingSpinner from "../components/LoadingSpinner";
-
-export function loader(queryClient: QueryClient) {
-  return async function ({ params }: LoaderFunctionArgs) {
-    if (!params.countryName) {
-      throw new Error("No Country Name Provided");
-    }
-
-    await queryClient.ensureQueryData(countryDetailsQuery(params.countryName));
-
-    return { countryName: params.countryName };
-  };
-}
+import { useCountryDetailsQuery } from "../hooks/useCountryDetailsQuery";
+import { TCountryLoader } from "../util/countryLoader";
 
 export default function Country() {
-  const { countryName } = useLoaderData() as Awaited<
-    ReturnType<ReturnType<typeof loader>>
-  >;
+  const { countryName } = useLoaderData() as TCountryLoader;
 
-  const { data } = useSuspenseQuery(countryDetailsQuery(countryName));
+  const countryInfo = useCountryDetailsQuery(countryName);
   const navigation = useNavigation();
 
   return (
@@ -51,15 +31,15 @@ export default function Country() {
           {/* image */}
           <div className="h-[14.25rem] w-full max-w-[35rem] bg-accent shadow-sm sm:h-[25rem]">
             <img
-              src={data.flags.svg}
-              alt={data.flags.alt}
+              src={countryInfo.flags.svg}
+              alt={countryInfo.flags.alt}
               className="h-full w-full"
             />
           </div>
           {/* content */}
           <div className="w-full max-w-[61.25rem] text-sm md:text-base xl:flex-1">
             <h2 className="mb-7 text-xl/5 font-extraBold capitalize md:mb-8 md:text-3xl">
-              {data.name.common || data.name.official}
+              {countryInfo.name.common || countryInfo.name.official}
             </h2>
             {/* country info */}
             <div className="2xl mb-11 flex flex-col gap-12 md:mb-[4.25rem] md:flex-row md:justify-between md:gap-0">
@@ -68,28 +48,30 @@ export default function Country() {
                 <p>
                   <b className="font-bold">Native Name: </b>
                   <span>
-                    {!isObjectEmpty(data.name.nativeName)
-                      ? getNativeName(data.name.nativeName)
+                    {!isObjectEmpty(countryInfo.name.nativeName)
+                      ? getNativeName(countryInfo.name.nativeName)
                       : "--"}
                   </span>
                 </p>
                 <p>
                   <b className="font-bold">Population: </b>
-                  <span>{formatPopulation(data.population)}</span>
+                  <span>{formatPopulation(countryInfo.population)}</span>
                 </p>
                 <p>
                   <b className="font-bold">Region: </b>{" "}
-                  <span>{data.region}</span>
+                  <span>{countryInfo.region}</span>
                 </p>
                 <p>
                   <b className="font-bold">Sub Region: </b>
-                  <span>{data.subregion ? data.subregion : "--"}</span>
+                  <span>
+                    {countryInfo.subregion ? countryInfo.subregion : "--"}
+                  </span>
                 </p>
                 <p>
                   <b className="font-bold">Capital: </b>
                   <span>
-                    {!isArrayEmpty(data.capital)
-                      ? data.capital.join(", ")
+                    {!isArrayEmpty(countryInfo.capital)
+                      ? countryInfo.capital.join(", ")
                       : "--"}
                   </span>
                 </p>
@@ -99,22 +81,24 @@ export default function Country() {
                 <p>
                   <b className="font-bold">Top Level Domain: </b>
                   <span>
-                    {!isArrayEmpty(data.tld) ? data.tld.join(", ") : "--"}
+                    {!isArrayEmpty(countryInfo.tld)
+                      ? countryInfo.tld.join(", ")
+                      : "--"}
                   </span>
                 </p>
                 <p>
                   <b className="font-bold">Currencies: </b>
                   <span>
-                    {!isObjectEmpty(data.currencies)
-                      ? getCurrencies(data.currencies)
+                    {!isObjectEmpty(countryInfo.currencies)
+                      ? getCurrencies(countryInfo.currencies)
                       : "--"}
                   </span>
                 </p>
                 <p>
                   <b className="font-bold">Languages: </b>
                   <span>
-                    {!isObjectEmpty(data.languages)
-                      ? getLanguages(data.languages)
+                    {!isObjectEmpty(countryInfo.languages)
+                      ? getLanguages(countryInfo.languages)
                       : "--"}
                   </span>
                 </p>
@@ -127,8 +111,8 @@ export default function Country() {
                 <b className="font-bold">Border Countries:</b>
               </p>
               <div className="flex flex-wrap gap-2">
-                {data.borders.length > 0
-                  ? data.borders.map((ele) => (
+                {countryInfo.borders.length > 0
+                  ? countryInfo.borders.map((ele) => (
                       <BorderCountryLink key={ele} countryCode={ele} />
                     ))
                   : "--"}

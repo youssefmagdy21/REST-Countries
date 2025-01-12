@@ -1,4 +1,4 @@
-import { getCountryByName } from "../api/countries-api";
+import { getCountryByName } from "../util/countries-api";
 
 export const countryDetailsQuery = (countryName: string) => ({
   queryKey: ["country", countryName],

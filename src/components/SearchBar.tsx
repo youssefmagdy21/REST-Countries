@@ -15,11 +15,15 @@ function SearchBar() {
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const searchValue = e.target.value.trimStart();
-    setSearchParams((prev) => {
-      if (searchValue.length === 0) prev.delete("name");
-      else prev.set("name", searchValue);
-      return prev;
-    });
+    const isFirstSearch = nameQuery === "";
+    setSearchParams(
+      (prev) => {
+        if (searchValue.length === 0) prev.delete("name");
+        else prev.set("name", searchValue);
+        return prev;
+      },
+      { replace: !isFirstSearch },
+    );
 
     setIsSearching(false);
   }

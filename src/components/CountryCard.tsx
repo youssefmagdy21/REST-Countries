@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { formatPopulation, isArrayEmpty } from "../util";
+import { formatPopulation, isArrayEmpty } from "../utils/util";
 
 type TCountryCardProps = {
   flagImage: string;
@@ -23,7 +23,7 @@ export default function CountryCard({
       to={`countries/${name.toLowerCase()}`}
       className="block shadow-sm transition-transform duration-300 hover:scale-105"
     >
-      <div className="bg-accent h-[21rem] overflow-hidden rounded-md">
+      <div className="h-[21rem] overflow-hidden rounded-md bg-accent">
         <div className="h-[10rem] shadow-sm">
           <img
             src={flagImage}

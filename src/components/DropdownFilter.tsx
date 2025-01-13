@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GrPowerReset } from "react-icons/gr";
-import { TRegion } from "../types/globalTypes";
+import { TRegion } from "../types/global-types";
 import { useSearchParams } from "react-router-dom";
 
 function DropdownFilter() {

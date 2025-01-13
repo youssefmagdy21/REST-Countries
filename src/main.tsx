@@ -13,7 +13,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 import { ThemeProvider } from "./contexts/ThemeContext/ThemeProvider.tsx";
-import { countryLoader } from "./util/countryLoader.ts";
+import { countryLoader } from "./utils/countryLoader.ts";
+import { countriesLoader } from "./utils/countriesLoader.ts";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +32,7 @@ const routes: RouteObject[] = [
     children: [
       {
         index: true,
+        loader: countriesLoader(queryClient),
         element: <Index />,
       },
       {

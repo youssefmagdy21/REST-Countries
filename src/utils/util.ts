@@ -1,4 +1,4 @@
-import { TCurrencies, TLanguages, TNativeName } from "./types/global-types";
+import { TCurrencies, TLanguages, TNativeName } from "../types/global-types";
 
 export const getNativeName = (name: TNativeName) => {
   const generatedName = Object.values(name).reverse()[0];

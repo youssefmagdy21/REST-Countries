@@ -8,14 +8,13 @@ import {
   getNativeName,
   isArrayEmpty,
   isObjectEmpty,
-} from "../util/util";
+} from "../utils/util";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { useCountryDetailsQuery } from "../hooks/useCountryDetailsQuery";
-import { TCountryLoader } from "../util/countryLoader";
+import { useCountryDetailsQuery } from "../queries/countryDetailsQuery";
+import { TCountryLoader } from "../utils/countryLoader";
 
 export default function Country() {
   const { countryName } = useLoaderData() as TCountryLoader;
-
   const countryInfo = useCountryDetailsQuery(countryName);
   const navigation = useNavigation();
 

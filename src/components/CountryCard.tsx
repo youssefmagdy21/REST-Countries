@@ -31,7 +31,6 @@ export default function CountryCard({
             className="h-full w-full"
             height={160}
             width={320}
-            loading="lazy"
           />
         </div>
         <div className="px-6 py-8 text-sm/4">

@@ -29,7 +29,7 @@ function SearchBar() {
   }
   const debouncedSearch = debounce(handleSearchChange, 750);
   return (
-    <label className="relative flex h-12 w-full items-center rounded-md bg-accent px-7 font-bold shadow md:h-14 md:w-[480px]">
+    <label className="relative flex h-12 w-full items-center rounded-md bg-accent px-7 font-bold shadow md:h-14 md:w-[30rem]">
       <IoSearchSharp className="text-input" />
       <input
         type="search"

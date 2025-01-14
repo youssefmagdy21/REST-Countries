@@ -48,10 +48,10 @@ function DropdownFilter() {
       </div>
       {/* menu */}
       <div
-        className={`absolute left-0 top-14 z-10 w-[200px] rounded-md bg-accent px-5 py-[18px] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+        className={`absolute left-0 top-14 z-10 w-[12.5rem] rounded-md bg-accent px-5 py-[1.125rem] shadow-sm transition-all duration-300 ease-in-out md:top-16 ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
         aria-hidden={!isOpen}
       >
-        <ul className="space-y-[10px]">
+        <ul className="space-y-[0.625rem]">
           {regions.map((ele) => (
             <li
               key={ele}

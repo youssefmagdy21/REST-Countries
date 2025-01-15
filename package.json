@@ -1,5 +1,6 @@
 {
   "name": "rest-countries",
+  "homepage": "https://youssefmagdy21.github.io/REST-Countries/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +13,6 @@
   "dependencies": {
     "@tanstack/react-query": "^5.61.4",
     "@tanstack/react-query-devtools": "^5.62.7",
-    "clsx": "^2.1.1",
     "lodash.debounce": "^4.0.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

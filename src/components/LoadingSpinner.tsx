@@ -1,11 +1,9 @@
+import loadingSpinner from "../assets/loading-spinner.svg";
+
 export default function LoadingSpinner() {
   return (
-    <section className="flex h-[calc(100vh-(5rem+10rem))] w-full items-center justify-center md:h-[calc(100vh-(5rem+6.5rem))]">
-      <img
-        src="../public/loading-spinner.svg"
-        alt="loading spinner"
-        width={150}
-      />
+    <section className="flex h-[calc(100vh-5rem)] w-full items-center justify-center bg-background md:h-[calc(100vh-5rem)]">
+      <img src={loadingSpinner} alt="loading spinner" width={150} />
     </section>
   );
 }

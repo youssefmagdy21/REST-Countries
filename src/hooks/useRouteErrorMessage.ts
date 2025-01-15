@@ -2,6 +2,7 @@ import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 export function useRouteErrorMessage() {
   const error = useRouteError();
+  console.log(error);
   const errorMessage = isRouteErrorResponse(error)
     ? error.statusText
     : error instanceof Error

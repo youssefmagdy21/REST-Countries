@@ -1,9 +1,5 @@
 export type TCountry = {
-  flags: {
-    png: string;
-    svg: string;
-    alt: string;
-  };
+  flags: TFlags;
   name: {
     common: string;
     official: string;
@@ -13,6 +9,12 @@ export type TCountry = {
   region: string;
   population: number;
   cca3: string;
+};
+
+export type TFlags = {
+  png: string;
+  svg: string;
+  alt: string;
 };
 
 export type TDetailedCountry = TCountry & {

@@ -7,19 +7,21 @@ import {
 } from "react-router-dom";
 import Root from "./layouts/Root.tsx";
 import Index from "./pages/Index.tsx";
-import Country from "./pages/Country.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 import { ThemeProvider } from "./contexts/ThemeContext/ThemeProvider.tsx";
 import { countryLoader } from "./utils/countryLoader.ts";
 import { countriesLoader } from "./utils/countriesLoader.ts";
+import { lazy } from "react";
+
+const LazyCountry = lazy(() => import("./pages/Country.tsx"));
+const LazyError = lazy(() => import("./pages/ErrorPage.tsx"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 5 * 60,
+      staleTime: 1000 * 10 * 60,
     },
   },
 });
@@ -28,7 +30,7 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: <Root />,
-    errorElement: <ErrorPage />,
+    errorElement: <LazyError />,
     children: [
       {
         index: true,
@@ -37,9 +39,9 @@ const routes: RouteObject[] = [
       },
       {
         path: "countries/:countryName",
-        element: <Country />,
+        element: <LazyCountry />,
         loader: countryLoader(queryClient),
-        errorElement: <ErrorPage />,
+        errorElement: <LazyError />,
       },
     ],
   },

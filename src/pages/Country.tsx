@@ -1,6 +1,5 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import BackButton from "../components/BackButton";
-import BorderCountryLink from "../components/BorderCountryLink";
 import {
   formatPopulation,
   getCurrencies,
@@ -12,6 +11,8 @@ import {
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useCountryDetailsQuery } from "../queries/countryDetailsQuery";
 import { TCountryLoader } from "../utils/countryLoader";
+import BordersList from "../components/BordersList";
+import FlagBig from "../components/FlagBig";
 
 export default function Country() {
   const { countryName } = useLoaderData() as TCountryLoader;
@@ -27,14 +28,7 @@ export default function Country() {
         <LoadingSpinner />
       ) : (
         <section className="mt-[3.75rem] flex flex-col items-start gap-12 md:mt-20 xl:flex-row xl:items-center xl:gap-[6.75rem]">
-          {/* image */}
-          <div className="h-[14.25rem] w-full max-w-[35rem] bg-accent shadow-sm sm:h-[25rem]">
-            <img
-              src={countryInfo.flags.svg}
-              alt={countryInfo.flags.alt}
-              className="h-full w-full"
-            />
-          </div>
+          <FlagBig flagInfo={countryInfo.flags} />
           {/* content */}
           <div className="w-full max-w-[61.25rem] text-sm md:text-base xl:flex-1">
             <h2 className="mb-7 text-xl/5 font-extraBold capitalize md:mb-8 md:text-3xl">
@@ -103,20 +97,8 @@ export default function Country() {
                 </p>
               </div>
             </div>
-            {/* borders */}
-            {/* TO DO FETCH FROM CODE */}
-            <div className="flex flex-wrap items-center gap-2">
-              <p>
-                <b className="font-bold">Border Countries:</b>
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {countryInfo.borders.length > 0
-                  ? countryInfo.borders.map((ele) => (
-                      <BorderCountryLink key={ele} countryCode={ele} />
-                    ))
-                  : "--"}
-              </div>
-            </div>
+
+            <BordersList borders={countryInfo.borders} />
           </div>
         </section>
       )}

@@ -21,7 +21,7 @@ function Index() {
             {data.map((ele) => {
               return (
                 <CountryCard
-                  key={ele.name.common}
+                  key={ele.cca3}
                   flagImage={ele.flags.png}
                   flagAlt={ele.flags.alt}
                   name={ele.name.common || ele.name.official}

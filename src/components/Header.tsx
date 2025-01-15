@@ -8,7 +8,7 @@ function Header() {
     <header className="bg-accent px-4 shadow md:px-[4.75rem]">
       <div className="flex items-center justify-between py-[1.875rem] md:py-6">
         <h1 className="text-base/5 font-extraBold md:text-xl/8">
-          <Link to="/" replace>
+          <Link to="/REST-Countries" replace>
             Where in the world?
           </Link>
         </h1>

@@ -14,9 +14,9 @@ import { ThemeProvider } from "./contexts/ThemeContext/ThemeProvider.tsx";
 import { countryLoader } from "./utils/countryLoader.ts";
 import { countriesLoader } from "./utils/countriesLoader.ts";
 import { lazy } from "react";
+import ErrorPage from "./pages/ErrorPage.tsx";
 
 const LazyCountry = lazy(() => import("./pages/Country.tsx"));
-const LazyError = lazy(() => import("./pages/ErrorPage.tsx"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,9 +28,9 @@ const queryClient = new QueryClient({
 
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: "REST-Countries",
     element: <Root />,
-    errorElement: <LazyError />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -41,7 +41,7 @@ const routes: RouteObject[] = [
         path: "countries/:countryName",
         element: <LazyCountry />,
         loader: countryLoader(queryClient),
-        errorElement: <LazyError />,
+        errorElement: <ErrorPage />,
       },
     ],
   },

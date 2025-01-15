@@ -1,4 +1,8 @@
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  queryOptions,
+  useQuery,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { getCountries } from "../utils/countries-api";
 import { TCountries } from "../types/global-types";
 
@@ -15,6 +19,15 @@ export function useCountriesQuery(regionFilter: string, nameFilter: string) {
   });
 
   return data;
+}
+
+export function useBorderName(borderCode: string) {
+  const { data, isLoading } = useQuery({
+    ...countriesQuery,
+    select: (data: TCountries) => getBorderName(data, borderCode),
+  });
+
+  return { data, isLoading };
 }
 
 function filterCountries(
@@ -39,4 +52,11 @@ function filterCountries(
   }
 
   return filteredData;
+}
+
+function getBorderName(data: TCountries, borderCode: string) {
+  const borderCountry = data.find((ele) => ele.cca3 === borderCode);
+  if (!borderCountry) return "";
+
+  return borderCountry.name.common || borderCountry.name.official;
 }

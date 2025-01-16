@@ -21,9 +21,9 @@ export default function CountryCard({
   return (
     <Link
       to={`countries/${name.toLowerCase()}`}
-      className="block shadow-sm transition-transform duration-300 hover:scale-105"
+      className="block overflow-hidden rounded-md shadow transition-transform duration-300 hover:scale-105"
     >
-      <div className="h-[21rem] overflow-hidden rounded-md bg-accent">
+      <div className="h-[21rem] bg-accent">
         <div className="h-[10rem] shadow-sm">
           <img
             src={flagImage}

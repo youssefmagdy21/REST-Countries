@@ -36,7 +36,7 @@ function SearchBar() {
         name="search"
         id="search"
         placeholder="Search for a country..."
-        className="h-full w-full bg-accent px-6 py-4 text-base/4 placeholder:text-xs placeholder:font-light placeholder:text-input/90 focus:outline-none md:py-[1.125rem]"
+        className="h-full w-full bg-accent px-6 py-4 text-base/4 placeholder:text-sm placeholder:font-light placeholder:text-input/90 focus:outline-none md:py-[1.125rem]"
         defaultValue={nameQuery}
         onChange={debouncedSearch}
         onKeyDown={() => setIsSearching(true)}

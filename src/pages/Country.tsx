@@ -1,5 +1,10 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import BackButton from "../components/BackButton";
+import LoadingSpinner from "../components/LoadingSpinner";
+import BordersList from "../components/BordersList";
+import FlagBig from "../components/FlagBig";
+import { useCountryDetailsQuery } from "../queries/countryDetailsQuery";
+import { TCountryLoader } from "../utils/countryLoader";
 import {
   formatPopulation,
   getCurrencies,
@@ -8,11 +13,6 @@ import {
   isArrayEmpty,
   isObjectEmpty,
 } from "../utils/util";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { useCountryDetailsQuery } from "../queries/countryDetailsQuery";
-import { TCountryLoader } from "../utils/countryLoader";
-import BordersList from "../components/BordersList";
-import FlagBig from "../components/FlagBig";
 
 export default function Country() {
   const { countryName } = useLoaderData() as TCountryLoader;

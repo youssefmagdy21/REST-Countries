@@ -36,7 +36,7 @@ function DropdownFilter() {
     <div className="relative h-12 w-max text-sm/4 font-bold md:h-14">
       {/* switch */}
       <div
-        className="flex h-full w-[12.5rem] cursor-pointer items-center justify-between rounded-md bg-accent px-5 py-[1.125rem] shadow-sm transition-colors duration-300 ease-in-out hover:bg-text hover:text-accent md:py-[1.125rem]"
+        className="flex h-full w-[12.5rem] cursor-pointer items-center justify-between rounded-md bg-accent px-5 py-[1.125rem] shadow transition-colors duration-300 ease-in-out hover:bg-text hover:text-accent md:py-[1.125rem]"
         onClick={handleToggleMenu}
       >
         <span className="capitalize">

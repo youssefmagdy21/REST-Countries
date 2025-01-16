@@ -20,11 +20,11 @@ export default function Country() {
   const navigation = useNavigation();
 
   return (
-    <main className="min-h-[calc(100vh-5rem)] overflow-auto bg-background px-7 pb-14 md:px-[4.75rem]">
+    <>
       {navigation.state === "loading" ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <main className="min-h-[calc(100vh-5rem)] overflow-auto bg-background px-7 pb-14 md:px-[4.75rem]">
           <div className="mt-10 md:mt-[4.75rem]">
             <BackButton />
           </div>
@@ -102,8 +102,8 @@ export default function Country() {
               <BordersList borders={countryInfo.borders} />
             </div>
           </section>
-        </>
+        </main>
       )}
-    </main>
+    </>
   );
 }

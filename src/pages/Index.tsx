@@ -11,11 +11,11 @@ function Index() {
   const data = useCountriesQuery(regionFilter, nameFilter);
   const navigation = useNavigation();
   return (
-    <main className="min-h-[calc(100vh-5rem)] overflow-auto bg-background px-7 pb-14 md:px-[4.75rem]">
+    <>
       {navigation.state === "loading" ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <main className="min-h-[calc(100vh-5rem)] overflow-auto bg-background px-7 pb-14 md:px-[4.75rem]">
           <FormContainer />
           <CountriesGrid>
             {data.map((ele) => {
@@ -32,9 +32,9 @@ function Index() {
               );
             })}
           </CountriesGrid>
-        </>
+        </main>
       )}
-    </main>
+    </>
   );
 }
 export default Index;

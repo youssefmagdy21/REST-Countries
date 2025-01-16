@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouteObject } from "react-router-dom";
+import { createHashRouter, RouteObject } from "react-router-dom";
 import Root from "./layouts/Root.tsx";
 import Index from "./pages/Index.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -48,7 +48,7 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes, { basename: "/REST-Countries/" });
+const router = createHashRouter(routes);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

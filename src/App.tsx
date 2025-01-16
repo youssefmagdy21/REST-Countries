@@ -13,7 +13,7 @@ export default function App({ router }: { router: Router }) {
         setShowInitialLoading(false);
         clearInterval(intervalID);
       }
-    }, 500);
+    }, 750);
 
     return () => clearInterval(intervalID);
   }, [router]);

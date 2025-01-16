@@ -9,7 +9,7 @@ export default function InitialLoading() {
     >
       <img src={loadingSpinner} alt="loading spinner" width={150} />
       <h1 className="text-xl font-extraBold text-text sm:text-3xl">
-        ⏳Page will load very soon⏳
+        ⏳Page will load shortly⏳
       </h1>
     </div>
   );

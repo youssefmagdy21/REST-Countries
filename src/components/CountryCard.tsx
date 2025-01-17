@@ -20,7 +20,7 @@ export default function CountryCard({
 }: TCountryCardProps) {
   return (
     <Link
-      to={`countries/${name.toLowerCase()}`}
+      to={`countries/${name.toLowerCase().replaceAll(" ", "%20")}`}
       className="block overflow-hidden rounded-md shadow transition-transform duration-300 hover:scale-105"
     >
       <div className="h-[21rem] bg-accent">
